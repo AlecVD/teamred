@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, width=device-width" />
+<link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.0/mapsjs-ui.css?dp-version=1533195059" />
+<script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-core.js"></script>
+<script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-service.js"></script>
+<script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-ui.js"></script>
+<script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-mapevents.js"></script>
+<container id="mapContainer"></container>
+</head>
+<body>
+
+
+  <script  type="text/javascript" charset="UTF-8" >
+  // Instantiate a map and platform object:
+    var platform = new H.service.Platform({
+      'app_id': '8QZRPks2FC5AiCn1C6ON',
+      'app_code': 'B9SV9d5o-I0jtq8P8b2_Xg',
+      'useHTTPS':'true'
+    });
+    // Retrieve the target element for the map:
+    var targetElement = document.getElementById('mapContainer');
+    
+    // Get default map types from the platform object:
+    var defaultLayers = platform.createDefaultLayers();
+    
+    // Instantiate the map:
+    var map = new H.Map(
+      document.getElementById('mapContainer'),
+      defaultLayers.normal.map,
+      {
+      zoom: 10,
+      center: { lat: 52.51, lng: 13.4 }
+      });
+    
+    // Create the parameters for the reverse geocoding request:
+    var reverseGeocodingParameters = {
+        prox: '52.5309,13.3847,150',
+        mode: 'retrieveAddresses',
+        maxresults: 1
+      };
+    
+    // Define a callback function to process the response:
+    function onSuccess(result) {
+      var location = result.Response.View[0].Result[0];
+    
+      // Create an InfoBubble at the returned location with
+      // the address as its contents:
+      ui.addBubble(new H.ui.InfoBubble({
+        lat: location.Location.DisplayPosition.Latitude,
+        lng: location.Location.DisplayPosition.Longitude
+       }, { content: location.Location.Address.Label }));
+    };
+    
+    // Get an instance of the geocoding service:
+    var geocoder = platform.getGeocodingService();
+    
+    // Call the geocode method with the geocoding parameters,
+    // the callback and an error callback function (called if a
+    // communication error occurs):
+    geocoder.reverseGeocode(
+      reverseGeocodingParameters,
+      onSuccess,
+      function(e) { alert(e); });
+
+  </script>
+</body>
+</html>

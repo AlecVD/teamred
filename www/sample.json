@@ -1,0 +1,38 @@
+{
+	"people": {
+		"id02": {
+			"name": "Alec",
+			"age": 16,
+			"blood": "A+",
+			"address": "666 Devil's Court",
+			"lat": 120,
+			"long": 100,
+			"timestamp": "4:20",
+			"special": "none",
+			"other": "none"
+		},
+		"id01": {
+			"name": "Emily",
+			"age": 12,
+			"blood": "A-",
+			"address": "lame address",
+			"lat": 120,
+			"long": 100,
+			"timestamp": "4:20",
+			"special": "short af",
+			"other": "allergic to milk"
+		},
+
+		"id00": {
+			"name": "sample",
+			"age": 69,
+			"blood": "A-",
+			"address": "address",
+			"lat": 120,
+			"long": 100,
+			"timestamp": "4:20",
+			"special": "legs broke",
+			"other": "allergic to peanuts"
+		}
+	}
+}

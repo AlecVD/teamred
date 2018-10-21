@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="info.css">
+        <link rel="shortcut icon" type="image/x-icon" href="img/torr.ico">
+        <script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="index.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.css"/>
+        <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.js"></script>
+          
+        <!--Here stufff-->
+        <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.0/mapsjs-ui.css?dp-version=1533195059" />
+        <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-core.js"></script>
+        <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-service.js"></script>
+        <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-ui.js"></script>
+        <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-mapevents.js"></script>
+          
+        <!-- imported fonts by Google -->
+        <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
+        <title>Red Team</title>
+    </head> 
+    <body onload="loadInterval()" >
+        <!-- NAVBAR -->
+        
+        <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+            <div class = "container">
+                    <a class="navbar-brand" href="#">
+                        <img src="img/tortor.svg" height = "40px" alt="tornado picture">
+                        Red Team
+                    </a>
+            </div>
+            <button type='button' onclick='danger();' class='btn btn-danger'>DANGER</button>
+        </nav>
+        
+        <!-- HEADER -->
+    
+            <!-- DISPLAY USERS' INFORMATION -->
+        <header>
+            <div class = "container">
+                <div class = "row">
+                    <div class = "col text-center">
+                        <h1> User Information</h1>
+                        <p>Click on the lat and long button to display the user's location on a map. Scroll out to see all coordinates. Undefined means that the person has chosen to not share their location. Please do not press on the button.</p>
+                    </div>
+                </div>
+                <div class = "row">
+                    <div class = "table-responsive">
+                        <table class="table table-striped table-bordered table-sm" id="tableid">
+                            <thead>
+                                <tr>
+                                    <th scope = "col" class="th-sm">#<i class="fa fa-sort float-right" aria-hidden="true"></i></th>
+                                    <th scope = "col" class="th-sm">FULL NAME<i class="fa fa-sort float-right" aria-hidden="true"></i></th>
+                                    <th scope = "col" class="th-sm">AGE<i class="fa fa-sort float-right" aria-hidden="true"></i></th>
+                                    <th scope = "col" class="th-sm">HOME ADDRESS<i class="fa fa-sort float-right" aria-hidden="true"></i></th>
+                                    <th scope = "col" class="th-sm">BLOOD TYPE<i class="fa fa-sort float-right" aria-hidden="true"></i></th>
+                                    <th scope = "col" class="th-sm">COORDINATES<i class="fa fa-sort float-right" aria-hidden="true"></i></th>
+                                    <th scope = "col" class="th-sm">LAST SEEN<i class="fa fa-sort float-right" aria-hidden="true"></i></th>
+                                    <th scope = "col" class="th-sm">SPECIAL NEEDS<i class="fa fa-sort float-right" aria-hidden="true"></i></th>
+                                    <th scoep = "col" class="th-sm">OTHER<i class="fa fa-sort float-right" aria-hidden="true"></i></th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <div class = "container" id="mapOf">
+                <div class = "row">
+                    <div class = "col-12 text-center">
+                        <h1>Map of: </h1>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="mapDiv">
+                <center><div id="mapTxt"></div></center>
+                <div id="mapContainer">
+            </div>
+            </header>
+        <!-- FIRST SECTION -->
+        
+            <!-- INFORMATION REGARDING APP -->
+        <div class = "section first-section">
+            <div class="row justify-content-around align-items-center">
+                <div class = "col-12 col-lg-5">
+                    <h1>How Our App Works:</h1>
+                    <ul>
+                        <li>Register with all the needed information in order for first responders to find you quickly. </li>
+                        <font color = red>*It should be noted that people with location will be responded to first, as responders are more certain of their location.</font>
+                        <li>If we don't receive an updated response, or your response is still "unsafe" after 15 minutes, we will upload your information you've entered on our website for first responders to find you.</li>
+                    </ul>
+                </div>
+                    
+                <div class = "col-12 col-lg-5">
+                    <img class="rounded img-fluid" src="img/firstResponder.png" alt="first responders image">
+                </div>
+            </div>
+        </div>
+        
+        <!-- SECOND SECTION -->
+        
+            <!-- PURPOSE OF APP/WEBSITE -->
+        <div class = "section second-section">
+            <div class = "container">
+                <div class = "row">
+                    <div class = "col-12 text-center">
+                        <h1>Our Purpose</h1>
+                        <p>Our app and website strives to bring help to communities experiencing natural disasters. We want to be able to locate everyone and make sure they're safe. If not, we want first responders to be able to send help to those in need in the fastest way possible. </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- FOURTH SECTION -->
+        <div class = "section fourth-section">
+            <div class = "container">
+                <div class = "row">
+                    <div class = "col-12 text-center">
+                        <h1>Devastating Casualties</h1>
+                        <p>In September of 2018, an earthquake and tsunami hit Indonesia. Many were killed. The officials have stopped efforts to find more bodies as there is little hope to finding them under the rubble. Hover over the question mark to find out how many casualties came with this Natural Disaster :( </p>
+                        <div id = "qq"><p style='color:#fffd93;margin:auto;'>?</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- THIRD SECTION -->
+        
+            <!-- Nice looking made by us -->
+        <footer class="text-center">
+            <small>Brought to you by Red Team: Alec V.D, Emily L, Holger K, & Yohan B from <span> <img class = "footer-logo" src="img/hyphhack.png"></span>!</small>
+        </footer>
+        
+        <script type="text/javascript" src="dom.js"></script>
+        
+    </body>
+</html>
