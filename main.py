@@ -37,7 +37,7 @@ regFields = {
 }
 
 jsonFile = {
-    # "people": {
+    "people": {
     #     "id20" : {
     #         "name": "Alec",
 		  #  "age":16,
@@ -74,7 +74,7 @@ jsonFile = {
 		  #  "other":"none",
 		  #  "notsafe":"true"
     #     }
-    # }
+    }
 }
 
 curId = 70
